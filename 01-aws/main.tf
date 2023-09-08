@@ -142,7 +142,7 @@ resource "aws_security_group" "web" {
 }
 
 
-data "aws_ami" "ubuntu_ami" {
+data "aws_ami" "latest_ubuntu" {
   most_recent = true
   owners      = ["amazon"]
 
@@ -165,7 +165,7 @@ resource "aws_key_pair" "demo" {
 
 resource "aws_instance" "demo_public" {
   subnet_id     = aws_subnet.public.id
-  ami           = data.aws_ami.ubuntu_ami.id
+  ami           = data.aws_ami.latest_ubuntu.id
   instance_type = var.instance_type
 
   vpc_security_group_ids      = [aws_security_group.remote.id, aws_security_group.web.id]

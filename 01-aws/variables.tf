@@ -1,3 +1,9 @@
+variable "aws_region" {
+  type = string
+  default = "eu-west-3"
+  
+}
+
 variable "vpc_cidr" {
   description = "Cidr block for vpc"
   default     = "192.168.1.0/24"

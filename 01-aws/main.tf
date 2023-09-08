@@ -174,7 +174,23 @@ resource "aws_instance" "demo_public" {
   key_name = aws_key_pair.demo.key_name
 
   tags = {
-    Name = "demo ec2 instance"
+    Name = "public instance"
+  }
+
+}
+
+
+resource "aws_instance" "demo_private" {
+  subnet_id     = aws_subnet.private.id
+  ami           = data.aws_ami.latest_ubuntu.id
+  instance_type = var.instance_type
+
+  vpc_security_group_ids = [aws_security_group.remote.id]
+
+  key_name = aws_key_pair.demo.key_name
+
+  tags = {
+    Name = "private instance"
   }
 
 }

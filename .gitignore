@@ -1,5 +1,5 @@
 ssh_keys
-01-aws/.terraform
+**/.terraform
 *.tfstate
 *.tfstate.*
 *.tfvars

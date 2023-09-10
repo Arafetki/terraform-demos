@@ -42,3 +42,9 @@ variable "rsa_public_key" {
   type        = string
 
 }
+
+variable "user_data" {
+  description = "Initialization script for ec2 instance"
+  type        = string
+
+}

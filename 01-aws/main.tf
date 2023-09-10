@@ -173,6 +173,8 @@ resource "aws_instance" "demo_public" {
 
   key_name = aws_key_pair.demo.key_name
 
+  user_data = file(var.user_data)
+
   tags = {
     Name = "public instance"
   }

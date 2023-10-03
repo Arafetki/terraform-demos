@@ -47,3 +47,11 @@ variable "apache_user_data" {
   description = "Ec2 Apache server user data"
   type        = string
 }
+
+
+variable "allowed_ports" {
+  description = "List of Allowed ports"
+  type        = list(number)
+  default     = [80, 443]
+
+}

@@ -100,22 +100,17 @@ resource "aws_security_group" "web" {
   name        = "web access"
   vpc_id      = aws_vpc.dev.id
   description = "allow http and https traffic"
-  ingress {
-    description      = "allow inbound traffic on port 80 from anywhere"
-    from_port        = 80
-    to_port          = 80
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
 
-  ingress {
-    description      = "allow inbound traffic on port 443 from anywhere"
-    from_port        = 443
-    to_port          = 443
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
+  dynamic "ingress" {
+    for_each = var.allowed_ports
+    content {
+      from_port        = ingress.value
+      to_port          = ingress.value
+      protocol         = "tcp"
+      cidr_blocks      = ["0.0.0.0/0"]
+      ipv6_cidr_blocks = ["::/0"]
+    }
+
   }
 
   egress {
